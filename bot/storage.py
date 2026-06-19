@@ -1,5 +1,6 @@
 orders = []
 
+
 def add_order(user_id, side, amount):
     orders.append({
         "user_id": user_id,
@@ -7,5 +8,6 @@ def add_order(user_id, side, amount):
         "amount": amount
     })
 
+
 def get_orders():
-    return list(orders)
+    return orders

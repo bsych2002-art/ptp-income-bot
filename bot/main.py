@@ -1,6 +1,10 @@
+import os
 from telegram.ext import Application, CommandHandler
+
 from bot.handlers import start, create_order, list_orders
-from bot.config import TOKEN
+
+TOKEN = os.getenv("BOT_TOKEN")
+
 
 def main():
     if not TOKEN:
@@ -12,8 +16,9 @@ def main():
     app.add_handler(CommandHandler("create", create_order))
     app.add_handler(CommandHandler("orders", list_orders))
 
-    print("Bot started")
+    print("BOT STARTED")
     app.run_polling()
+
 
 if __name__ == "__main__":
     main()
