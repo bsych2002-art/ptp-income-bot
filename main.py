@@ -1,7 +1,7 @@
 import os
 from telegram.ext import Application, CommandHandler
 
-from bot.handlers import start, create_order, list_orders
+from handlers import start, create_order, list_orders
 
 TOKEN = os.getenv("BOT_TOKEN")
 
