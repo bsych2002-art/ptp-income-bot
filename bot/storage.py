@@ -8,4 +8,4 @@ def add_order(user_id, side, amount):
     })
 
 def get_orders():
-    return orders
+    return list(orders)
