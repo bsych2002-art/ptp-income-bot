@@ -5,7 +5,6 @@ from handlers import start, create_order, list_orders
 
 TOKEN = os.getenv("BOT_TOKEN")
 
-
 def main():
     if not TOKEN:
         raise ValueError("BOT_TOKEN is missing")
@@ -18,7 +17,6 @@ def main():
 
     print("BOT STARTED")
     app.run_polling()
-
 
 if __name__ == "__main__":
     main()
