@@ -1,0 +1,30 @@
+from telegram import Update
+from telegram.ext import ContextTypes
+from bot.storage import add_order, get_orders
+
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text("P2P бот работает!")
+
+async def create_order(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    try:
+        side = context.args[0]
+        amount = context.args[1]
+
+        add_order(update.effective_user.id, side, amount)
+
+        await update.message.reply_text(f"Создано: {side} {amount}")
+    except:
+        await update.message.reply_text("Используй: /create buy 100")
+
+async def list_orders(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    orders = get_orders()
+
+    if not orders:
+        await update.message.reply_text("Пока нет заявок")
+        return
+
+    text = "Заявки:\n"
+    for o in orders:
+        text += f"{o['side']} {o['amount']}\n"
+
+    await update.message.reply_text(text)
